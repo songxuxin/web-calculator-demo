@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>calculator</title>
+	<link rel="stylesheet" type="text/css" href="calculator.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="input-container">
+			<input id="myInput" />
+		</div>
+		<div class="button-group">
+			<div class="left-group">
+				<div id="seven" class="button-number" onclick="handleInput(this)">7</div>
+				<div id="eight" class="button-number" onclick="handleInput(this)">8</div>
+				<div id="nine" class="button-number" onclick="handleInput(this)">9</div>
+				<div id="four" class="button-number" onclick="handleInput(this)">4</div>
+				<div id="five" class="button-number" onclick="handleInput(this)">5</div>
+				<div id="six" class="button-number" onclick="handleInput(this)">6</div>
+				<div id="one" class="button-number" onclick="handleInput(this)">1</div>
+				<div id="two" class="button-number" onclick="handleInput(this)">2</div>
+				<div id="three" class="button-number" onclick="handleInput(this)">3</div>
+				<div id="zero" class="button-number" onclick="handleInput(this)">0</div>
+				<div id="dot" class="button-number" onclick="getDot(this)">.</div>
+				<div id="add" class="button-number" onclick="getOperator(this)">+</div>
+			</div>
+			<div class="right-group">
+				<div id="clear" class="button-operator" onclick="handleClear()">clear</div>
+				<div id="minus" class="button-operator" onclick="getOperator(this)">-</div>
+				<div id="multi" class="button-operator" onclick="getOperator(this)">*</div>
+				<div id="divid" class="button-operator" onclick="getOperator(this)">/</div>
+				<div id="equal" class="button-operator" onclick="getResult()">=</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	let x = '';
+	let y = '';
+	let dot = null;
+	let operator = ''
+	function handleInput(id) {
+		var value = id.innerHTML;
+		console.log(value);
+		var myInput = document.getElementById("myInput");
+
+		myInput.value += value;
+	}
+
+	function getOperator(id) {
+		let input1 = document.getElementById('myInput');
+		x = input1.value;
+
+		input1.value = '';
+		operator = id.innerHTML;
+	}
+
+	function getResult() {
+		let input2 = document.getElementById("myInput");
+		y = input2.value;
+		if (operator === '+') {
+			input2.value = Number(x) + Number(y);
+		} else if (operator === '-') {
+			input2.value = Number(x) - Number(y);
+		} else if (operator === '*') {
+			input2.value = Number(x) * Number(y);
+		} else {
+			input2.value = Number(x) / Number(y);
+		}
+	}
+
+	function getDot() {
+		if (dot == null) {
+			dot = '.';
+			let myInput = document.getElementById('myInput');
+			myInput.value = myInput.value + '.';
+		}
+	}
+
+	function handleClear() {
+		let myinput = document.getElementById('myInput');
+		myinput.value = '';
+	}
+
+</script>
+
+</html>
